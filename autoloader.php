@@ -10,9 +10,8 @@ if (!function_exists('wpmvc_autoload')) {
     function wpmvc_autoload(string $resource = ''): bool
     {
         if (empty($resource)) return false;
-
         $remove_limit_antislashs    = fn (string $resource): string => trim($resource, '\\');
-        $got_namespace              = fn (string $namespace, string $resource): string => strpos($resource, WPB_NAMESPACE) === 0;
+        $got_namespace              = fn (string $namespace, string $resource): string => strpos($resource, $namespace) === 0;
         $remove_namespace           = fn (string $namespace, string $resource): string => preg_replace('/' . preg_quote($namespace, '/') . '/', '', $resource, 1);
 
         $resource = $remove_limit_antislashs($resource);
